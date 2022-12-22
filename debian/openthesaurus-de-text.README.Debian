@@ -1,0 +1,9 @@
+openthesaurus-de-text for Debian
+--------------------------------
+
+This package provides a text thesaurus for use with programs like ding.
+The file is installed into /usr/share/openthesaurus-de but for using
+it with ding or other applications you need to configure them to
+use it with their respective preferences/settings.
+
+ -- Rene Engelhard <rene@debian.org>, Thu, 22 Apr 2004 16:10:57 +0200

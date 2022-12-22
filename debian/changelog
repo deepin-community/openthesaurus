@@ -1,0 +1,252 @@
+openthesaurus (20160424-4) unstable; urgency=high
+
+  * remove obsolete debian/openoffice.org-thesaurus-de (closes: #975830)
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 25 Nov 2020 21:42:07 +0100
+
+openthesaurus (20160424-3) unstable; urgency=medium
+
+  * [c9cef92] fix the other unzip, too
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 26 Apr 2016 21:40:52 +0200
+
+openthesaurus (20160424-2) unstable; urgency=medium
+
+  * [0a36012] fix unzip...
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 26 Apr 2016 20:47:14 +0200
+
+openthesaurus (20160424-1) unstable; urgency=medium
+
+  * Imported Upstream snapshot 20160424
+
+  * bump dh compat to 9 (closes: #817608)
+  * only Suggest libreoffice-core (closes: #768254)
+  * add TZ=UTC before unzip in debian/rules to make the files mtime
+    invariant to timezone to make the package build reproducibly,
+    thanks Dhole <dhole@openmailbox.org> (closes: #792599)
+  * remove *.info-myspell (and dictionaries-common dependency),
+    and /usr/share/myspell/dicts symlinks - long obsolete
+
+ -- Rene Engelhard <rene@debian.org>  Mon, 25 Apr 2016 15:41:08 +0200
+
+openthesaurus (20120516-2) unstable; urgency=low
+
+  * fix sed in debian/rules for utf8-encoded dicts so that ß is correctly
+    subsituted for -de-ch, thanks Tom Jampen (closes: #685996) 
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 18 Dec 2012 17:17:04 +0100
+
+openthesaurus (20120516-1) unstable; urgency=medium
+
+  * new upstream snapshot
+    - had fixed umlauts in DeutscherThesaurus.oxt (closes: #673080)
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 16 May 2012 00:10:34 +0200
+
+openthesaurus (20110119-5) unstable; urgency=medium
+
+  * remove obsolete calls of update-openoffice-dicts (closes: #641429)
+
+ -- Rene Engelhard <rene@debian.org>  Fri, 16 Dec 2011 20:54:14 +0000
+
+openthesaurus (20110119-4) unstable; urgency=low
+
+  * quote ß in rules (closes: #642511) 
+
+ -- Rene Engelhard <rene@debian.org>  Mon, 26 Sep 2011 23:23:00 +0000
+
+openthesaurus (20110119-3) unstable; urgency=low
+
+  * remove conflicts against oo.o-thesaurus-de(-ch) again, we now have
+    transitional packages there 
+
+ -- Rene Engelhard <rene@debian.org>  Fri, 11 Mar 2011 11:15:45 +0100
+
+openthesaurus (20110119-2) unstable; urgency=low
+
+  * upload to unstable
+  * actually conflict/replarece/provide oo.o-thesaurus-de
+
+ -- Rene Engelhard <rene@debian.org>  Sun, 06 Feb 2011 17:56:34 +0000
+
+openthesaurus (20110119-1) experimental; urgency=low
+
+  * new snapshot
+  * rename to mythes-de, provide mythes-thesaurus(-xx) 
+  * allow LibreOffice in Depends, fix depends to require OOo3
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 19 Jan 2011 22:40:42 +0100
+
+openthesaurus (20100603-1) unstable; urgency=medium
+
+  * new snapshot
+  * remove -kword completely, gone indefinitely also upstream
+  * also stop building mozilla-openthesaurus-de 
+  * fix th_de_CH_v2.* build 
+  * move to "3.0 (quilt)" 
+
+ -- Rene Engelhard <rene@debian.org>  Thu, 03 Jun 2010 23:15:46 +0200
+
+openthesaurus (20080808-3) unstable; urgency=high
+
+  * s/GGPL/LGPL/, oops. Add (C) 2006 Daniel Naber for the mozilla integration
+    and mention that the data is contributed the various people
+    (closes: #543502)
+  * remove -kword as koffice is gone... (closes: #531443)
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 25 Aug 2009 15:31:05 +0200
+
+openthesaurus (20080808-2) unstable; urgency=low
+
+  * move to /usr/share/mythes
+  * fix lintians debhelper-but-no-misc-depends
+
+ -- Rene Engelhard <rene@debian.org>  Fri, 31 Jul 2009 20:16:11 +0200
+
+openthesaurus (20080808-1) unstable; urgency=low
+
+  * new snapshot 
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 12 Aug 2008 16:05:46 -0300
+
+openthesaurus (20070408-3) unstable; urgency=low
+
+  * unset DH_OPTIONS before calling dh_gencontrol (closes: #453226)
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 28 Nov 2007 15:38:01 +0100
+
+openthesaurus (20070408-2) unstable; urgency=low
+
+  * fix typo in -de-ch's description (closes: #423147) 
+
+ -- Rene Engelhard <rene@debian.org>  Thu, 10 May 2007 10:40:06 +0200
+
+openthesaurus (20070408-1) unstable; urgency=low
+
+  * new snapshot
+  * also add the firefox search plugin
+
+ -- Rene Engelhard <rene@debian.org>  Sun,  8 Apr 2007 15:38:31 +0200
+
+openthesaurus (20070320-1) experimental; urgency=low
+
+  * new snapshot 
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 20 Mar 2007 18:21:36 +0100
+
+openthesaurus (20060518-1) unstable; urgency=low
+
+  * new snapshot
+  * update debian/copyright (now LGPL..)
+  * Standards-Version: 3.7.2 (no changes needed)
+  * add Build-Depends: on debhelper in addition to B-D-I, thanks
+    lintian
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 17 May 2006 23:24:39 -0500
+
+openthesaurus (20060222-2) unstable; urgency=low
+
+  * build de_CH thesaurus (openoffice.org-thesaurus-de-ch)
+  * register -de also for Austria
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 28 Feb 2006 21:46:17 +0100
+
+openthesaurus (20060222-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 22 Feb 2006 17:17:00 +0100
+
+openthesaurus (20051019-1) unstable; urgency=low
+
+  * new snapshot
+  * disable building of OOo1 thesaurus and build only the OOo2
+    one, named openoffice.org-thesaurus-de again; make it
+    Conflict/Replace/Provide openoffice.org2-thesaurus-de
+  * upload to unstable.
+
+ -- Rene Engelhard <rene@debian.org>  Fri, 21 Oct 2005 17:41:59 +0200
+
+openthesaurus (20050804-1) experimental; urgency=low
+
+  * new snapshot
+  * don't ship thescoder anymore. add Build-Depends on thescoder
+  * build OOo2 thesaurus; add Build-Depends on unzip libmythes-dev
+
+ -- Rene Engelhard <rene@debian.org>  Thu,  4 Aug 2005 20:24:23 +0200
+
+openthesaurus (20041231-2) unstable; urgency=medium
+
+  * add script to permutate the input lines, thescoder wants to
+    have each meaning at least defined on an own line in the first
+    part, many thanks to Maik Zumstrull for the script.
+  * postprocess the idx files to "fix" e.g. the Pi and "eulersche Zahl"
+    synonyms by subsituting the (right) , with . since , is the delimiter
+    in the index file format...
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 16 Feb 2005 22:04:11 +0100
+
+openthesaurus (20041231-1) unstable; urgency=low
+
+  * new snapshot
+  * build OpenOffice.org thesaurus (closes: #193888)
+    (use thescoder; use a slightly changed version and get it here until it is
+     packaged and configurable..)
+
+ -- Rene Engelhard <rene@debian.org>  Sat,  1 Jan 2005 00:25:03 +0100
+
+openthesaurus (20040708-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Thu,  8 Jul 2004 18:35:02 +0200
+
+openthesaurus (20040629-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Tue, 29 Jun 2004 02:22:39 +0200
+
+openthesaurus (20040606-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Sun,  6 Jun 2004 02:26:24 +0200
+
+openthesaurus (20040526-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 26 May 2004 02:02:03 +0200
+
+openthesaurus (20040515-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Sat, 15 May 2004 12:21:01 +0200
+
+openthesaurus (20040503-1) unstable; urgency=low
+
+  * new snapshot
+
+ -- Rene Engelhard <rene@debian.org>  Mon,  3 May 2004 22:55:07 +0200
+
+openthesaurus (20040422-1) unstable; urgency=low
+
+  * new snapshot 
+
+ -- Rene Engelhard <rene@debian.org>  Thu, 22 Apr 2004 22:59:45 +0200
+
+openthesaurus (20040421-2) unstable; urgency=low
+
+  * package text thesaurus 
+
+ -- Rene Engelhard <rene@debian.org>  Thu, 22 Apr 2004 15:28:06 +0200
+
+openthesaurus (20040421-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Rene Engelhard <rene@debian.org>  Wed, 21 Apr 2004 23:23:37 +0200
+

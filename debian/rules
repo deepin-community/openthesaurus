@@ -1,0 +1,101 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	touch configure-stamp
+
+build: build-arch build-indep
+
+build-arch: build-arch-stamp
+build-arch-stamp: configure-stamp 
+
+	touch build-arch-stamp
+
+build-indep: build-indep-stamp
+build-indep-stamp: configure-stamp 
+	TZ=UTC unzip -o Deutscher-Thesaurus.oxt && \
+		/usr/share/mythes/th_gen_idx.pl -o th_de_DE_v2.idx \
+			< th_de_DE_v2.dat && \
+		LANG=C cat th_de_DE_v2.dat | sed -e 's/ß/ss/g' > th_de_CH_v2.dat; \
+		/usr/share/mythes/th_gen_idx.pl -o th_de_CH_v2.idx \
+			< th_de_CH_v2.dat
+
+	touch build-indep-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+	rm -f *.dat *.idx
+	rm -f README.txt description.xml Dictionaries.xcu
+	rm -rf META-INF
+
+	dh_clean 
+
+install: install-indep install-arch
+install-indep:
+	dh_testdir
+	dh_testroot
+	dh_prep -i 
+	dh_installdirs -i
+
+	# for the symlinks
+	mkdir -p $(CURDIR)/debian/mythes-de/usr/share/myspell/dicts/
+	mkdir -p $(CURDIR)/debian/mythes-de-ch/usr/share/myspell/dicts/
+
+	mkdir -p $(CURDIR)/debian/openthesaurus-de-text/usr/share/openthesaurus-de/
+	cd $(CURDIR)/debian/openthesaurus-de-text/usr/share/openthesaurus-de && \
+	TZ=UTC unzip $(CURDIR)/OpenThesaurus-Textversion.zip openthesaurus.txt && \
+		ln -sf openthesaurus.txt thesaurus.txt
+
+	install -D -m644 th_de_DE_v2.dat \
+		$(CURDIR)/debian/mythes-de/usr/share/mythes/th_de_DE_v2.dat
+	install -D -m644 th_de_DE_v2.idx \
+		$(CURDIR)/debian/mythes-de/usr/share/mythes/th_de_DE_v2.idx
+	ln -s /usr/share/mythes/th_de_DE_v2.dat \
+		$(CURDIR)/debian/mythes-de/usr/share/myspell/dicts/th_de_DE_v2.dat
+	ln -s /usr/share/mythes/th_de_DE_v2.idx \
+		$(CURDIR)/debian/mythes-de/usr/share/myspell/dicts/th_de_DE_v2.idx
+	install -D -m644 th_de_CH_v2.dat \
+		$(CURDIR)/debian/mythes-de-ch/usr/share/mythes/th_de_CH_v2.dat
+	install -D -m644 th_de_CH_v2.idx \
+		$(CURDIR)/debian/mythes-de-ch/usr/share/mythes/th_de_CH_v2.idx
+	ln -s /usr/share/mythes/th_de_CH_v2.dat \
+		$(CURDIR)/debian/mythes-de-ch/usr/share/myspell/dicts/th_de_CH_v2.dat
+	ln -s /usr/share/mythes/th_de_CH_v2.idx \
+		$(CURDIR)/debian/mythes-de-ch/usr/share/myspell/dicts/th_de_CH_v2.idx
+
+install-arch:
+
+# Must not depend on anything. This is to be called by
+# binary-arch/binary-indep
+# in another 'make' thread.
+binary-common:
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installexamples
+	dh_installdebconf	
+	dh_link
+	dh_compress 
+	dh_fixperms
+	dh_installdeb
+	unset DH_OPTIONS; dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-indep: build-indep install-indep
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+
+binary-arch: build-arch install-arch
+	#$(MAKE) -f debian/rules DH_OPTIONS=-a binary-common
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install install-indep install-arch configure

@@ -1,0 +1,39 @@
+Source: openthesaurus
+Section: text
+Priority: optional
+Maintainer: Rene Engelhard <rene@debian.org>
+Build-Depends-Indep: dpkg-dev (>= 1.10.11), unzip, libmythes-dev
+Build-Depends: debhelper (>= 9.0.0)
+Standards-Version: 3.7.2
+
+Package: openthesaurus-de-text
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: ding
+Description: German Text Thesaurus for e.g. ding
+ This package contains the German OpenThesaurus (www.openthesaurus.de) thesaurus
+ for usage with e.g. ding.
+
+Package: mythes-de
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: libreoffice-core
+Provides: mythes-thesaurus, mythes-thesaurus-de, openoffice.org-thesaurus-de
+Replaces: openoffice.org-thesaurus-de
+Conflicts: openoffice.org (<< 1.9)
+Description: German Thesaurus for OpenOffice.org/LibreOffice
+ This package contains the German OpenThesaurus (www.openthesaurus.de)
+ thesaurus for usage with OpenOffice.org/LibreOffice.
+
+Package: mythes-de-ch
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: libreoffice-core
+Provides: mythes-thesaurus, mythes-thesaurus-de, openoffice.org-thesaurus-de-ch
+Replaces: openoffice.org-thesaurus-de-ch
+Conflicts: openoffice.org (<< 1.9)
+Description: German Thesaurus for OpenOffice.org/LibreOffice (Swiss Version)
+ This package contains the German OpenThesaurus (www.openthesaurus.de)
+ thesaurus for usage with OpenOffice.org/LibreOffice. It uses Swiss Spelling
+ (ss instead of ß).
+
